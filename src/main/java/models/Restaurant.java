@@ -1,7 +1,5 @@
 package models;
 
-import org.h2.mvstore.StreamStore;
-
 import java.util.Objects;
 
 public class Restaurant {
