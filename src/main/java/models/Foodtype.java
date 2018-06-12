@@ -20,9 +20,9 @@ public class Foodtype {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Foodtype that = (Foodtype) o;
-        return id == that.id &&
-                Objects.equals(name, that.name);
+        Foodtype foodtype = (Foodtype) o;
+        return id == foodtype.id &&
+                Objects.equals(name, foodtype.name);
     }
 
     @Override
