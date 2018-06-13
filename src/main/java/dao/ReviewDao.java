@@ -8,7 +8,6 @@ import java.util.List;
 public interface ReviewDao {
     //CREATE
     void add(Review review);
-//  void addReviewToRestaurant(Review review, Restaurant restaurant);
 
     //READ
     List<Review> getAll();
@@ -17,6 +16,6 @@ public interface ReviewDao {
     //UPDATE
 
     //DELETE
-//    void deleteById(int id);
-//    void clearAllReviews();
+    void deleteById(int id);
+    void clearAllReviews();
 }

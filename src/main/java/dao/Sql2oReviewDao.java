@@ -1,5 +1,6 @@
 package dao;
 
+import models.Restaurant;
 import models.Review;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -43,6 +44,29 @@ public class Sql2oReviewDao implements ReviewDao {
             return con.createQuery("SELECT * FROM reviews WHERE restaurantid = :restaurantid")
                     .addParameter("restaurantid", restaurantId)
                     .executeAndFetch(Review.class);
+        }
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE FROM reviews WHERE id = :id";
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void clearAllReviews() {
+        String sql = "DELETE FROM reviews";
+        try(Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 }

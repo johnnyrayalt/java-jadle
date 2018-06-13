@@ -38,6 +38,14 @@ public class Sql2oFoodtypeDaoTest {
     }
 
     @Test
+    public void findById() throws Exception {
+        Foodtype testFoodtype = setUpFoodType();
+        foodtypeDao.add(testFoodtype);
+        int id = testFoodtype.getId();
+        assertEquals(id, foodtypeDao.findById(id).getId());
+    }
+
+    @Test
     public void addFoodTypeToRestaurantAddsFoodTypeCorrectly() throws Exception {
 
         Restaurant restaurant = setUpNewRestaurant();
@@ -53,7 +61,7 @@ public class Sql2oFoodtypeDaoTest {
         foodtypeDao.addFoodtypeToRestaurant(testFoodType, restaurant);
         foodtypeDao.addFoodtypeToRestaurant(testFoodType, restaurant1);
 
-        assertEquals(2, foodtypeDao.getAllFoodtypesByRestaurant(testFoodType.getId()).size());
+        assertEquals(2, foodtypeDao.getAllRestaurantsByFoodType(testFoodType.getId()).size());
     }
 
     @Test

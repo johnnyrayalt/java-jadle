@@ -52,6 +52,25 @@ public class Sql2oReviewDaoTest {
         assertEquals(2, reviewDao.getAllReviewsForARestaurant(restaurant.getId()).size());
     }
 
+    @Test
+    public void deleteById() throws Exception {
+        Restaurant testRestaurant = setUpNewRestaurant();
+        Review review = setUpReviewForARestaurant(testRestaurant);
+        Review review1 = setUpReviewForARestaurant(testRestaurant);
+        int idOfReviewToDelete = review.getId();
+        reviewDao.deleteById(idOfReviewToDelete);
+        assertEquals(1, reviewDao.getAll().size());
+    }
+
+    @Test
+    public void clearAllReviews() throws Exception {
+        Restaurant restaurant = setUpNewRestaurant();
+        Review review = setUpReviewForARestaurant(restaurant);
+        Review review1 = setUpReviewForARestaurant(restaurant);
+        reviewDao.clearAllReviews();
+        assertEquals(0, reviewDao.getAll().size());
+    }
+
     public Review setUpNewReview() {
         Review review = new Review("Thats a lot of nuts", "Betty", 10, 555);
         reviewDao.add(review);
